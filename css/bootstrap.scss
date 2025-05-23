@@ -1,0 +1,28 @@
+/******* Customized Bootstrap ********/
+
+$primary: #c25763;
+$secondary: #bfa1db;
+$light: #F4F6F8;
+$dark: #2c1e24;
+
+$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+
+$headings-font-family: 'Playfair Display SC', serif;
+
+$body-color: #777777;
+
+$headings-color: $primary;
+
+$headings-font-weight: 700;
+
+$display-font-weight: 700;
+
+$enable-responsive-font-sizes: true;
+
+$border-radius: false;
+
+$link-decoration: none;
+
+$enable-negative-margins: true;
+
+@import "node_modules/bootstrap/scss/bootstrap";
