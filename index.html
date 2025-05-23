@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js"></html>
+<html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +11,8 @@
 			name="keywords"
 			content="A New Day band, melodic hardcore, post-hardcore music, emotional hardcore, underground music, atmospheric metalcore, hardcore punk, heavy music with melody, intense live performances, emotional lyrics, independent band, modern hardcore, ambient hardcore, screamo revival, post-metal influences, cathartic music experience"
 		/>
-		<meta name="author" content="Abraham Steve Colina" />
+
+		<meta name="author" content="The Caravel" />
 
 		<!-- Favicon -->
 		<link href="favicon.ico" rel="icon" />
@@ -33,25 +35,373 @@
 		/>
 		<link rel="manifest" href="site.webmanifest" />
 
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
-			rel="stylesheet"
-		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Karla&display=swap"
 			rel="stylesheet"
 		/>
-
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap"
 			rel="stylesheet"
 		/>
+
+			rel="stylesheet"
+		<style>
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background: linear-gradient(
+					90deg,
+					rgba(255, 255, 255, 1) 0%,
+					/* white */ rgba(111, 66, 193, 1) 8%,
+					/* GitHub purple */ rgba(74, 42, 139, 1) 20%,
+					/* deeper purple */ rgba(111, 66, 193, 1) 33%,
+					/* repeat GitHub purple */ rgba(111, 66, 193, 1) 63%,
+					/* consistent band */ rgba(169, 114, 255, 1) 77%,
+					/* light violet */ rgba(255, 255, 255, 1) 100%
+						/* fade to white */
+				);
+				font-family: "Karla", sans-serif;
+				font-size: 16px;
+				color: #111;
+				overflow-x: hidden;
+			}
+
+			.gallery-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1rem;
+				margin-left: 200px;
+				margin-top: 1rem;
+				z-index: 1;
+			}
+
+			.gallery-grid img {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+				border: 3px solid #c4b7d5;
+				border-radius: 6px;
+				transition: transform 0.2s ease;
+				cursor: pointer;
+			}
+
+			.gallery-grid img:hover {
+				transform: scale(1.05);
+				border-color: #7aa7ff;
+			}
+
+			.shirt-nav {
+				text-align: center;
+				margin-top: 1rem;
+				margin-bottom: 2rem;
+			}
+
+			.shirt-nav button {
+				background-color: #4a2a8b;
+				color: white;
+				border: #212121 2px solid;
+				font-size: 16px;
+				cursor: pointer;
+				margin: 0 10px;
+				transition: background-color 0.3s;
+			}
+
+			.shirt-nav button:hover {
+				background-color: #6f42c1;
+			}
+
+			.shirt-img {
+				width: 100%;
+				max-width: 300px;
+				height: 300px;
+				object-fit: cover; /* crop image to fill container */
+				display: block;
+				margin: auto;
+				border: 1px solid #7aa7ff;
+				border-radius: 4px;
+			}
+
+			.owl-carousel .owl-item {
+				display: flex;
+				justify-content: center;
+			}
+
+			.bgimg {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				object-fit: cover;
+				z-index: -1;
+			}
+
+			.sidewrapper {
+				position: fixed;
+				left: 0;
+				top: 0;
+				height: 100%;
+				z-index: 4;
+			}
+
+			.sidewrapper2 {
+				display: flex;
+				flex-direction: row;
+				height: 100%;
+			}
+
+			.side1 {
+				background-color: #212121;
+				width: 150px;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				font-size: 28px;
+				font-family: "PT Sans Narrow", sans-serif;
+				padding: 1.5rem 0;
+				overflow: scroll;
+				overflow-x: hidden;
+			}
+
+			.side2 {
+				background-color: #212121;
+				opacity: 0.7;
+				width: 50px;
+				height: 100%;
+			}
+
+			.headerwrapper {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				z-index: 3;
+			}
+
+			.headerborder {
+				background: rgba(0, 0, 0, 0.8);
+				width: 100%;
+				height: 25px;
+			}
+
+			.header {
+				margin-left: 200px;
+				font-size: 56px;
+				padding-top: 3rem;
+				line-height: 38px;
+				font-family: "Arial", sans-serif;
+				text-shadow: 3px 3px 0px #4a2a8b;
+				color: #212121;
+			}
+
+			.footerwrapper {
+				width: 100%;
+				background-color: #212121;
+				opacity: 0.7;
+				height: 40px;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				z-index: 2;
+			}
+
+			.container {
+				display: flex;
+				flex-direction: column;
+				padding: 3rem 3rem 5rem 3rem;
+				gap: 1rem;
+			}
+
+			.box {
+				background: rgba(255, 255, 255, 0.9);
+				border: 5px ridge #c4b7d5;
+				margin-left: 200px;
+				position: relative;
+				z-index: 1;
+			}
+
+			.content {
+				padding: 1rem;
+			}
+
+			.subheaders {
+				background-color: #212121;
+				color: #fff;
+				border-bottom: 3px ridge #c4b7d5;
+				font-weight: normal;
+				text-transform: uppercase;
+				font-size: 16px;
+			}
+
+			.logo {
+				position: fixed;
+				right: 1rem;
+				top: 42%;
+				width: 480px;
+			}
+
+			a {
+				color: #7aa7ff;
+				text-decoration: none;
+			}
+
+			.side1 a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			a:visited {
+				color: #7aa7ff;
+			}
+
+			.side1 a:visited {
+				color: #fff;
+			}
+
+			a:hover {
+				font-weight: bold;
+				text-shadow: none;
+			}
+
+			.side1 a:hover {
+				font-weight: normal;
+				text-shadow: 0 0 5px #fff;
+				color: #7aa7ff;
+			}
+
+			.side1 a.active {
+				font-weight: normal;
+				text-shadow: 0 0 5px #fff;
+				color: #97d9e9;
+				background-color: rgba(255, 255, 255, 0.1);
+			}
+
+			a:active {
+				font-weight: normal;
+			}
+
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+
+			::-webkit-scrollbar-track {
+				background-color: #212121;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background-color: #c4b7d5;
+			}
+
+			.side1::-webkit-scrollbar {
+				width: 3px;
+			}
+
+			.side1::-webkit-scrollbar-track {
+				background-color: #212121;
+			}
+
+			.side1::-webkit-scrollbar-thumb {
+				background: rgba(255, 255, 255, 0.3);
+			}
+
+			#credit {
+				color: #fff;
+				font-size: 12px;
+				position: fixed;
+				bottom: 0;
+				right: 0;
+				z-index: 3;
+			}
+
+			@media (max-width: 750px) {
+				body {
+					background: linear-gradient(
+						90deg,
+						#6f42c1 0%,
+						#6f42c1 8%,
+						#5a32a3 20%,
+						#6f42c1 33%,
+						#6f42c1 63%,
+						#a972ff 77%,
+						#ffffff 100%
+					);
+				}
+
+				.bgimg {
+					position: fixed;
+					bottom: 0;
+					left: 0;
+				}
+
+				.img {
+					width: 300px;
+				}
+
+				.headerwrapper {
+					position: relative;
+					z-index: 4;
+				}
+
+				.header {
+					margin: 0;
+				}
+
+				.headerborder {
+					display: none;
+				}
+
+				.sidewrapper {
+					position: relative;
+					z-index: 5;
+					position: sticky;
+					top: 0;
+				}
+
+				.sidewrapper2 {
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+				}
+
+				.side1 {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: center;
+					justify-content: center;
+					width: 100%;
+					height: auto;
+					padding: 0.5rem;
+					font-size: 18px;
+				}
+
+				.side1 img {
+					width: 48px;
+				}
+
+				.side2 {
+					width: 100%;
+					height: 25px;
+				}
+
+				.container {
+					padding: 1rem 1rem 4rem 1rem;
+				}
+
+				.box {
+					margin: 0;
+				}
+			}
+		</style>
+		<!-- Link to external stylesheet -->
+		<link rel="stylesheet" href="styles.css" />
 
 		<!-- Icon Font Stylesheet -->
 		<link
@@ -73,57 +423,6 @@
 			rel="stylesheet"
 		/>
 		<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-
-		<!-- Custom Style (Altimit Integration) -->
-		<style>
-			body {
-				background: linear-gradient(
-					90deg,
-					rgba(255, 255, 255, 1) 0%,
-					rgba(255, 105, 0, 1) 8%,
-					rgba(181, 83, 5, 1) 20%,
-					rgba(255, 105, 0, 1) 33%,
-					rgba(255, 105, 0, 1) 63%,
-					rgba(255, 166, 104, 1) 77%,
-					rgba(255, 255, 255, 1) 100%
-				);
-				font-family: "Karla", sans-serif;
-				overflow-x: hidden;
-			}
-			.header {
-				font-size: 56px;
-				margin-left: 200px;
-				padding-top: 3rem;
-				line-height: 38px;
-				font-family: "Arial", sans-serif;
-				color: #000;
-				text-shadow: 3px 3px 0px #8c3f00;
-			}
-			.side1 a:hover {
-				text-shadow: 0 0 5px #fff;
-				color: #97d9e9;
-			}
-			.altimitlogo {
-				position: fixed;
-				right: 1rem;
-				top: 42%;
-				width: 480px;
-				z-index: 2;
-			}
-			#credit {
-				color: #fff;
-				font-size: 12px;
-				position: fixed;
-				bottom: 0;
-				right: 0;
-				z-index: 3;
-			}
-		</style>
-
-		<script>
-			document.documentElement.classList.remove("no-js");
-			document.documentElement.classList.add("js");
-		</script>
 	</head>
 
 	<body>
@@ -136,86 +435,207 @@
 			</div>
 		</div>
 
-		<!-- Logo Image -->
-		<img
-			class="altimitlogo"
-			src="https://i.imgur.com/kX2jDP5.png"
-			alt="Altimit Logo"
-		/>
+		<img class="bgimg" src="img/bg-1.png" />
 
-		<!-- HEADER -->
 		<div class="headerwrapper">
 			<h1 class="header">A New Day</h1>
-			<div class="headerborder"></div>
+			<div class="headerborder">.</div>
 		</div>
 
-		<!-- Sidebar -->
 		<div class="sidewrapper">
 			<div class="sidewrapper2">
 				<div class="side1">
-					<a href="#"
-						><img src="https://i.imgur.com/FM4JrM1.png" />
-						<p>THE WORLD</p></a
+					<a
+						href="https://www.instagram.com/anewdayband/"
+						target="_blank"
+						><img src="img/icon-gw-low-res.png" />
+						<p>A NEW DAY</p></a
 					>
-					<a href="#"
-						><img src="https://i.imgur.com/WeZ6fmy.png" />
-						<p>MAILER</p></a
+					<a href="index.html" class="active"
+						><img src="img/navbar-1.png" />
+						<p>HOME</p></a
 					>
-					<a href="#"
-						><img src="https://i.imgur.com/KkJtAml.png" />
-						<p>NEWS</p></a
+					<a href="merch.html"
+						><img src="img/navbar-2.png" />
+						<p>MERCH</p></a
 					>
-					<a href="#"
-						><img src="https://i.imgur.com/eZGAhVt.png" />
-						<p>ACCESSORY</p></a
+					<a href="tour.html"
+						><img src="img/navbar-3.png" />
+						<p>TOUR</p></a
 					>
-					<a href="#"
-						><img src="https://i.imgur.com/2SMR5ij.png" />
-						<p>AUDIO</p></a
+					<a href="contact.html"
+						><img src="img/navbar-4.png" />
+						<p>CONTACT</p></a
 					>
-					<a href="#"
-						><img src="https://i.imgur.com/zKnelZI.png" />
-						<p>DATA</p></a
+					<a href="gallery.html"
+						><img src="img/navbar-5.png" />
+						<p>GALLERY</p></a
 					>
 				</div>
-				<div class="side2"></div>
+				<div class="side2">.</div>
 			</div>
 		</div>
 
-		<!-- Content -->
 		<div class="container">
 			<div class="box">
-				<h3 class="subheaders">Band Intro</h3>
-				<div class="content">
+				<h3 class="subheaders">WHO ARE WE?</h3>
+				<div style="padding: 1rem">
+					<img
+						src="img/gallery-1.JPEG"
+						alt="A New Day Band"
+						style="
+							float: right;
+							margin: 0 0 15px 15px;
+							max-width: 300px;
+							border: 1px solid #97d9e9;
+							border-radius: 4px;
+						"
+					/>
 					<p>
-						A New Day is a genre-blending band capturing the spirit
-						of resilience, transformation, and raw emotion through
-						sound.
+						<strong>A New Day</strong> is a melodic metalcore band
+						from South Texas, drawing influence from the emotionally
+						driven and powerful sounds of early 2000s bands like
+						<em>A Long Winter</em>. Combining heaviness with melody
+						and electronic textures.
 					</p>
+					<hr
+						style="
+							margin: 1rem 0;
+							border: 0;
+							border-top: 1px solid #c4b7d5;
+						"
+					/>
+
 					<p>
-						We aim to ignite hearts and provoke thought, using
-						lyrics and instrumentals that reflect both chaos and
-						calm — the push and pull of life’s hardest and most
-						beautiful moments.
+						<strong>Band Members:</strong><br />
+						Brenden Riker – Lead Vocalist<br />
+						David Falcon – Guitarist<br />
+						Aiden – Guitarist<br />
+						Javi – Drummer<br />
+						George Gonzales – Synth and Electronics<br />
+						Abraham Steve Colina – Bass
 					</p>
 				</div>
 			</div>
 
 			<div class="box">
-				<h3 class="subheaders">News & Updates</h3>
+				<h3 class="subheaders">A NEW DAY LIVE @ GUILLOTINE 4/20/25</h3>
 				<div class="content">
+					<iframe
+						width="100%"
+						height="315"
+						style="
+							max-width: 560px;
+							float: right;
+							margin: 0px 0px 10px 10px;
+							border: 1px solid #7aa7ff;
+						"
+						src="https://www.youtube.com/embed/hQPPMrsgAeo"
+						title="YouTube video player"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					>
+					</iframe>
+
 					<p>
-						Stay tuned for tour dates, new releases, and exclusive
-						behind-the-scenes looks at the making of our next album.
+						The energy was unreal. We also dropped our brand new
+						shirts (which you can check out in the merch section).
+						Thanks to everyone who grabbed one and sang their lungs
+						out with us! :D
+					</p>
+					<!-- [TRIMMED FOR BREVITY: Additional <p> blocks here...] -->
+				</div>
+			</div>
+
+			<div class="box">
+				<h3 class="subheaders">Our New Shirts!</h3>
+				<div class="content">
+					<div class="owl-carousel shirt-carousel">
+						<div>
+							<img
+								src="img/shirt-1.jpg"
+								alt="Shirt 1"
+								class="shirt-img"
+							/>
+						</div>
+						<div>
+							<img
+								src="img/shirt-2.jpg"
+								alt="Shirt 2"
+								class="shirt-img"
+							/>
+						</div>
+						<div>
+							<img
+								src="img/shirt-3.jpg"
+								alt="Shirt 3"
+								class="shirt-img"
+							/>
+						</div>
+						<div>
+							<img
+								src="img/shirt-4.jpg"
+								alt="Shirt 4"
+								class="shirt-img"
+							/>
+						</div>
+					</div>
+					<div class="shirt-nav">
+						<button id="shirt-prev">⟵ Prev</button>
+						<button id="shirt-next">Next ⟶</button>
+					</div>
+					<p>
+						Check out our newest shirt drops! These were designed by
+						our good friends at
+						<a
+							href="https://www.instagram.com/brandedbond/"
+							target="_blank"
+							>brandedbond</a
+						>
+						and printed on high-quality, American-made blanks!
+						Available in sizes S, M, L, and XL. They're only $15 and
+						worth every cent. New colors are on the way soon, so
+						grab one from the
+						<a href="MERCH_URL_HERE">merch section</a> before
+						they’re gone! :P
 					</p>
 				</div>
 			</div>
+
+			<img class="logo" src="img/logo-main.png" />
 		</div>
 
-		<!-- Footer -->
-		<div class="footerwrapper"></div>
+		<div class="footerwrapper">
+			<div
+				class="footer-content"
+				style="
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 1.5rem;
+					padding: 10px;
+				"
+			>
+				<a href="https://www.instagram.com/anewdayband/" target="_blank"
+					><i class="fab fa-instagram"></i
+				></a>
+				<a href="#" target="_blank"><i class="fab fa-spotify"></i></a>
+				<a
+					href="https://anewdaymusic.bandcamp.com/album/standby"
+					target="_blank"
+					><i class="fab fa-bandcamp"></i
+				></a>
+				<a href="https://www.youtube.com/@anewdayband" target="_blank"
+					><i class="fab fa-youtube"></i
+				></a>
+			</div>
+		</div>
+
 		<p id="credit">
-			Theme by <a href="https://repth.neocities.org/index.html">Repth</a>
+			Created by <a href="#">The Caravel Marketing</a> &nbsp;|&nbsp;
+			Powered by
+			<a href="https://repth.neocities.org/index.html">Repth</a>
 		</p>
 
 		<!-- Back to Top -->
@@ -255,6 +675,38 @@
 			);
 
 			observer.observe(footerLogo);
+		</script>
+
+		<script>
+			$(document).ready(function () {
+				$(".shirt-carousel").owlCarousel({
+					items: 1, // Only one visible at a time
+					margin: 0,
+					loop: true,
+					autoplay: true,
+					autoplayTimeout: 3000,
+					nav: true,
+					navText: [" ", " "],
+				});
+			});
+			$(document).ready(function () {
+				const shirtCarousel = $(".shirt-carousel");
+				shirtCarousel.owlCarousel({
+					items: 1,
+					margin: 0,
+					loop: true,
+					autoplay: true,
+					autoplayTimeout: 3000,
+					nav: false, // disable default nav
+				});
+
+				$("#shirt-prev").click(function () {
+					shirtCarousel.trigger("prev.owl.carousel");
+				});
+				$("#shirt-next").click(function () {
+					shirtCarousel.trigger("next.owl.carousel");
+				});
+			});
 		</script>
 	</body>
 </html>
