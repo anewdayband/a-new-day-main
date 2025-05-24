@@ -207,8 +207,8 @@
 					<div style="flex: 1; min-width: 280px">
 						<p>
 							<strong>Email:</strong>
-							<a href="mailto:anewdaybandtx@gmail.com"
-								>anewdaybandtx@gmail.com</a
+							<a href="mailto:anewdayband1936@gmail.com"
+								>anewdayband1936@gmail.com</a
 							>
 						</p>
 						<p>
@@ -359,6 +359,15 @@
 				$("#shirt-next").click(function () {
 					shirtCarousel.trigger("next.owl.carousel");
 				});
+			});
+		</script>
+		<!-- Tempus Dominus JS (for datetime pickers) -->
+		<script src="lib/tempusdominus/js/moment.min.js"></script>
+		<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+		<script>
+			$(function () {
+				$("#date").datetimepicker({ format: "L" });
+				$("#time").datetimepicker({ format: "LT" });
 			});
 		</script>
 	</body>
