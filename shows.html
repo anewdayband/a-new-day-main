@@ -136,9 +136,9 @@
 						><img src="img/navbar-5.png" />
 						<p>GALLERY</p></a
 					>
-					<a href="tour.html" class="active"
+					<a href="shows.html" class="active"
 						><img src="img/navbar-3.png" />
-						<p>TOUR</p></a
+						<p>SHOWS</p></a
 					>
 				</div>
 				<div class="side2">.</div>
@@ -147,66 +147,45 @@
 
 		<div class="container">
 			<div class="box">
-				<h3 class="subheaders">FUTURE TOUR ANNOUNCEMENT</h3>
-				<div
-					class="content"
-					style="
-						display: flex;
-						flex-wrap: wrap;
-						gap: 2rem;
-						align-items: center;
-					"
-				>
-					<!-- Image -->
-					<img
-						src="img/tour-1.jpg"
-						alt="Tour Poster"
-						style="
-							max-width: 400px;
-							width: 100%;
-							border: 1px solid #97d9e9;
-							border-radius: 4px;
-						"
-					/>
-
-					<!-- Text -->
-					<div style="flex: 1; min-width: 250px">
-						<p>
-							We’re hitting the road this
-							<strong>Winter 2025</strong> for a run of shows
-							across Texas with our good friends in the
-							post-hardcore band
-							<a
-								href="https://www.instagram.com/howmanytragedies/"
-								target="_blank"
-								>Kill or Be Killed</a
-							>
-							⌗(́◉◞౪◟◉‵⌗).
-						</p>
-
-						<p>
-							Expect new material we've been dying to play live.
-							Whether you're in San Antonio, Austin, Houston, or
-							Dallas we can't wait to see you in the pit.
-						</p>
-
-						<p>
-							Follow us and
-							<a
-								href="https://www.instagram.com/howmanytragedies/"
-								target="_blank"
-								>Kill or Be Killed</a
-							>
-							for tour dates, pre-sale info, and more.
-						</p>
-
-						<p>
-							<strong
-								>Let’s make Winter 2025 unforgettable. See you
-								there!</strong
-							>
-						</p>
-					</div>
+				<h3 class="subheaders">UPCOMING SHOWS</h3>
+				<div class="content">
+					<ul style="list-style: none; padding: 0;">
+						<li style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #c4b7d5;">
+							<strong>Feb 28</strong><br />
+							Flagship Records<br />
+							San Antonio, TX
+						</li>
+						<li style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #c4b7d5;">
+							<strong>Mar 27</strong><br />
+							Fermenteria<br />
+							San Antonio, TX
+						</li>
+						<li style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #c4b7d5;">
+							<strong>Apr 3</strong><br />
+							Cassidy House<br />
+							San Antonio, TX
+						</li>
+						<li style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #c4b7d5;">
+							<strong>Apr 4</strong><br />
+							Rubber Glove<br />
+							Denton, TX
+						</li>
+						<li style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #c4b7d5;">
+							<strong>May 7</strong><br />
+							Studio 210 Nightclub &amp; Bar<br />
+							San Antonio, TX
+						</li>
+						<li style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #c4b7d5;">
+							<strong>May 14</strong><br />
+							Paper Tiger<br />
+							San Antonio, TX
+						</li>
+						<li style="margin-bottom: 1.5rem;">
+							<strong>Jun 25</strong><br />
+							O'Death Cafe<br />
+							San Antonio, TX
+						</li>
+					</ul>
 				</div>
 			</div>
 
@@ -253,84 +232,5 @@
     	================================================== -->
 		<script src="js/plugins.js"></script>
 		<script src="js/main.js"></script>
-
-		<script>
-			const scriptURL =
-				"https://script.google.com/macros/s/AKfycbxvGfJokDID5NVS6L6MeFl7d4DMEYj8R7XOTN3hU1ZP9YgAY_xbzy17tDwTWiYtFpFBIA/exec";
-			const form = document.forms["submit-to-google-sheet"];
-			const msg = document.getElementById("msg");
-
-			// NEW for Spinner:
-			const submitBtn = document.getElementById("submitBtn");
-			const btnText = document.getElementById("btnText");
-			const spinner = document.getElementById("spinner");
-
-			form.addEventListener("submit", (e) => {
-				e.preventDefault();
-
-				// Show spinner and change button text
-				btnText.textContent = "Sending...";
-				spinner.style.display = "inline-block";
-
-				fetch(scriptURL, { method: "POST", body: new FormData(form) })
-					.then((response) => {
-						// Hide spinner and reset button text
-						btnText.textContent = "Send Message";
-						spinner.style.display = "none";
-
-						msg.innerHTML = "Message sent successfully!";
-						msg.style.color = "green";
-						setTimeout(() => {
-							msg.innerHTML = "";
-						}, 5000);
-						form.reset();
-					})
-					.catch((error) => {
-						// Hide spinner and reset button text
-						btnText.textContent = "Send Message";
-						spinner.style.display = "none";
-
-						msg.innerHTML =
-							"Error: Message could not be sent. Please try again later.";
-						msg.style.color = "red";
-						setTimeout(() => {
-							msg.innerHTML = "";
-						}, 5000);
-						console.error("Error!", error.message);
-					});
-			});
-		</script>
-
-		<script>
-			$(document).ready(function () {
-				$(".shirt-carousel").owlCarousel({
-					items: 1, // Only one visible at a time
-					margin: 0,
-					loop: true,
-					autoplay: true,
-					autoplayTimeout: 3000,
-					nav: true,
-					navText: [" ", " "],
-				});
-			});
-			$(document).ready(function () {
-				const shirtCarousel = $(".shirt-carousel");
-				shirtCarousel.owlCarousel({
-					items: 1,
-					margin: 0,
-					loop: true,
-					autoplay: true,
-					autoplayTimeout: 3000,
-					nav: false, // disable default nav
-				});
-
-				$("#shirt-prev").click(function () {
-					shirtCarousel.trigger("prev.owl.carousel");
-				});
-				$("#shirt-next").click(function () {
-					shirtCarousel.trigger("next.owl.carousel");
-				});
-			});
-		</script>
 	</body>
 </html>
