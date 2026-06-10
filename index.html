@@ -221,16 +221,19 @@
 						</div>
 					</div>
 					<div class="shirt-nav">
-						<button id="shirt-prev">⟵ Prev</button>
-						<button id="shirt-next">Next ⟶</button>
+						<button class="shirt-prev">⟵ Prev</button>
+						<button class="shirt-next">Next ⟶</button>
 					</div>
 					<p>
 						Hot off the van from our first May 2026 run, a
-						<a href="https://anewday.bigcartel.com/product/no-final-goodbye-shirt" target="_blank">tiny stash of leftover tees</a>
-						(smells like merch table LOL) is
-						now live on our Big Cartel and priced! Limited sizes,
-						beautiful designs by us, all made from Gildan Ultra
-						Cotton and printed by
+						<a
+							href="https://anewday.bigcartel.com/product/no-final-goodbye-shirt"
+							target="_blank"
+							>tiny stash of leftover tees</a
+						>
+						(smells like merch table LOL) is now live on our Big
+						Cartel and priced! Limited sizes, beautiful designs by
+						us, all made from Gildan Ultra Cotton and printed by
 						<a
 							href="https://www.instagram.com/187prints/"
 							target="_blank"
@@ -266,8 +269,8 @@
 						</div>
 					</div>
 					<div class="shirt-nav">
-						<button id="shirt-prev">⟵ Prev</button>
-						<button id="shirt-next">Next ⟶</button>
+						<button class="shirt-prev">⟵ Prev</button>
+						<button class="shirt-next">Next ⟶</button>
 					</div>
 					<p>
 						New swag drop!!
@@ -350,8 +353,8 @@
 						</div>
 					</div>
 					<div class="shirt-nav">
-						<button id="shirt-prev">⟵ Prev</button>
-						<button id="shirt-next">Next ⟶</button>
+						<button class="shirt-prev">⟵ Prev</button>
+						<button class="shirt-next">Next ⟶</button>
 					</div>
 					<p>
 						We've dropped new shirts once again in collaboration
@@ -558,8 +561,8 @@
 						</div>
 					</div>
 					<div class="shirt-nav">
-						<button id="shirt-prev">⟵ Prev</button>
-						<button id="shirt-next">Next ⟶</button>
+						<button class="shirt-prev">⟵ Prev</button>
+						<button class="shirt-next">Next ⟶</button>
 					</div>
 					<p>
 						Check out our newest shirt drops! These were designed by
@@ -645,32 +648,27 @@
 
 		<script>
 			$(document).ready(function () {
-				$(".shirt-carousel").owlCarousel({
-					items: 1, // Only one visible at a time
-					margin: 0,
-					loop: true,
-					autoplay: true,
-					autoplayTimeout: 3000,
-					nav: true,
-					navText: [" ", " "],
-				});
-			});
-			$(document).ready(function () {
-				const shirtCarousel = $(".shirt-carousel");
-				shirtCarousel.owlCarousel({
-					items: 1,
-					margin: 0,
-					loop: true,
-					autoplay: true,
-					autoplayTimeout: 3000,
-					nav: false, // disable default nav
-				});
+				// Initialize each shirt-carousel separately and wire its own prev/next buttons
+				$(".box").each(function () {
+					const $box = $(this);
+					const $carousel = $box.find(".shirt-carousel");
+					if ($carousel.length) {
+						$carousel.owlCarousel({
+							items: 1,
+							margin: 0,
+							loop: true,
+							autoplay: true,
+							autoplayTimeout: 3000,
+							nav: false,
+						});
 
-				$("#shirt-prev").click(function () {
-					shirtCarousel.trigger("prev.owl.carousel");
-				});
-				$("#shirt-next").click(function () {
-					shirtCarousel.trigger("next.owl.carousel");
+						$box.find(".shirt-prev").off("click").on("click", function () {
+							$carousel.trigger("prev.owl.carousel");
+						});
+						$box.find(".shirt-next").off("click").on("click", function () {
+							$carousel.trigger("next.owl.carousel");
+						});
+					}
 				});
 			});
 		</script>
