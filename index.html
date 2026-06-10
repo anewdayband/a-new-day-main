@@ -662,12 +662,16 @@
 							nav: false,
 						});
 
-						$box.find(".shirt-prev").off("click").on("click", function () {
-							$carousel.trigger("prev.owl.carousel");
-						});
-						$box.find(".shirt-next").off("click").on("click", function () {
-							$carousel.trigger("next.owl.carousel");
-						});
+						$box.find(".shirt-prev")
+							.off("click")
+							.on("click", function () {
+								$carousel.trigger("prev.owl.carousel");
+							});
+						$box.find(".shirt-next")
+							.off("click")
+							.on("click", function () {
+								$carousel.trigger("next.owl.carousel");
+							});
 					}
 				});
 			});
