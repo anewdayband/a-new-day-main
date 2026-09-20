@@ -1044,27 +1044,9 @@ a:active {
 	color: #ffb9e6;
 }
 
-/* the "it's out" state the countdown flips to on release day.
- * .when-live / .when-out let the CTA and the blurb rewrite themselves
- * once 09/08/26 rolls around, so nobody has to hand-edit this box. */
-.promo-outnow {
-	display: none;
-}
-
-.promo-countdown.is-out .promo-unit {
-	display: none;
-}
-
-.promo-countdown.is-out .promo-outnow {
-	display: inline-block;
-	font-family: "Anton", "PT Sans Narrow", Impact, sans-serif;
-	font-size: 22px;
-	letter-spacing: 0.1em;
-	color: var(--tbd-ink);
-	background: var(--tbd-mag-hot);
-	padding: 0.35rem 0.9rem;
-	box-shadow: 4px 4px 0 var(--tbd-ink);
-}
+/* on release day the clock stays up and just reads 0 00 00 00.
+ * .is-out is still added to the countdown and its .promo-box in case
+ * anything wants to style the released state later. */
 
 /* --- CTA ---------------------------------------------------------- */
 .promo-cta {
