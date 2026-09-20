@@ -240,7 +240,6 @@
 								<div class="promo-unit">
 									<b data-unit="seconds">--</b><span>Sec</span>
 								</div>
-								<span class="promo-outnow">Out Now</span>
 							</div>
 
 							<a
@@ -265,6 +264,88 @@
 						>This Beautiful Deception ✦ 09.08.26 ✦ Held Under an Incandescent Sky ✦ 10.02.26 ✦ A New Day ✦&nbsp;</span><span
 							class="promo-ticker-item"
 						>This Beautiful Deception ✦ 09.08.26 ✦ Held Under an Incandescent Sky ✦ 10.02.26 ✦ A New Day ✦&nbsp;</span></div>
+				</div>
+
+			</div>
+
+			<!-- ===== NEW EP: HELD UNDER AN INCANDESCENT SKY ===== -->
+			<!-- Placeholder art + link until the EP has its own. -->
+			<div class="box promo-box">
+				<h3 class="subheaders promo-subheader">
+					TRANSMISSION RECEIVED... 10/02/26
+				</h3>
+
+				<div class="promo-stage">
+					<div class="promo-grid">
+						<a
+							class="promo-art"
+							href="https://vyd.co/ThisBeautifulDeception"
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="Pre-save Held Under an Incandescent Sky"
+						>
+							<img
+								src="img/single-tbd.jpg"
+								alt="Held Under an Incandescent Sky"
+							/>
+							<span
+								class="promo-ghost promo-ghost-r"
+								style="
+									background-image: url('img/single-tbd.jpg');
+								"
+							></span>
+							<span
+								class="promo-ghost promo-ghost-c"
+								style="
+									background-image: url('img/single-tbd.jpg');
+								"
+							></span>
+							<span class="promo-art-tag">New EP</span>
+						</a>
+
+						<div class="promo-copy">
+							<div
+								class="promo-countdown"
+								id="epCountdown"
+								data-release="2026-10-02T00:00:00"
+								aria-live="polite"
+							>
+								<div class="promo-unit">
+									<b data-unit="days">--</b><span>Days</span>
+								</div>
+								<div class="promo-unit">
+									<b data-unit="hours">--</b><span>Hrs</span>
+								</div>
+								<div class="promo-unit">
+									<b data-unit="minutes">--</b><span>Min</span>
+								</div>
+								<div class="promo-unit">
+									<b data-unit="seconds">--</b><span>Sec</span>
+								</div>
+							</div>
+
+							<a
+								class="promo-cta"
+								href="https://vyd.co/ThisBeautifulDeception"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Pre-save Held Under an Incandescent Sky, out October 2, 2026"
+							>
+								<span class="promo-cta-date"
+									>October 2, 2026</span
+								>
+							</a>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="promo-ticker" aria-hidden="true">
+					<div class="promo-ticker-track" id="epTicker"><span
+							class="promo-ticker-item"
+						>Held Under an Incandescent Sky ✦ 10.02.26 ✦ This Beautiful Deception ✦ 09.08.26 ✦ A New Day ✦&nbsp;</span><span
+							class="promo-ticker-item"
+						>Held Under an Incandescent Sky ✦ 10.02.26 ✦ This Beautiful Deception ✦ 09.08.26 ✦ A New Day ✦&nbsp;</span></div>
 				</div>
 
 			</div>
@@ -827,51 +908,50 @@
 			}
 		</script>
 
-		<!-- "This Beautiful Deception" countdown -->
+		<!-- Release countdowns: one per .promo-countdown, driven by data-release.
+		     Once the date passes the clock just parks at 0 00 00 00. -->
 		<script>
 			(function () {
-				const el = document.getElementById("tbdCountdown");
-				if (!el) return;
-
-				const release = new Date(el.dataset.release).getTime();
-				const fields = {};
-				el.querySelectorAll("[data-unit]").forEach(function (node) {
-					fields[node.dataset.unit] = node;
-				});
-
 				const pad = (n) => String(n).padStart(2, "0");
-				let timer = null;
 
-				function tick() {
-					const left = release - Date.now();
+				document.querySelectorAll(".promo-countdown").forEach(function (el) {
+					const release = new Date(el.dataset.release).getTime();
+					const fields = {};
+					el.querySelectorAll("[data-unit]").forEach(function (node) {
+						fields[node.dataset.unit] = node;
+					});
 
-					if (left <= 0) {
-						el.classList.add("is-out");
-						const box = el.closest(".promo-box");
-						if (box) box.classList.add("is-out");
-						if (timer) clearInterval(timer);
-						return;
+					let timer = null;
+
+					function tick() {
+						const left = Math.max(release - Date.now(), 0);
+						const s = Math.floor(left / 1000);
+
+						fields.days.textContent = Math.floor(s / 86400);
+						fields.hours.textContent = pad(Math.floor(s / 3600) % 24);
+						fields.minutes.textContent = pad(Math.floor(s / 60) % 60);
+						fields.seconds.textContent = pad(s % 60);
+
+						if (left <= 0) {
+							el.classList.add("is-out");
+							const box = el.closest(".promo-box");
+							if (box) box.classList.add("is-out");
+							if (timer) clearInterval(timer);
+						}
 					}
 
-					const s = Math.floor(left / 1000);
-					fields.days.textContent = Math.floor(s / 86400);
-					fields.hours.textContent = pad(Math.floor(s / 3600) % 24);
-					fields.minutes.textContent = pad(Math.floor(s / 60) % 60);
-					fields.seconds.textContent = pad(s % 60);
-				}
-
-				tick();
-				if (!el.classList.contains("is-out")) {
-					timer = setInterval(tick, 1000);
-				}
+					tick();
+					if (!el.classList.contains("is-out")) {
+						timer = setInterval(tick, 1000);
+					}
+				});
 			})();
 		</script>
 
 		<!-- Ticker: driven by rAF so reduced-motion CSS can't freeze it -->
 		<script>
-			(function () {
-				const track = document.getElementById("tbdTicker");
-				if (!track || !track.firstElementChild) return;
+			document.querySelectorAll(".promo-ticker-track").forEach(function (track) {
+				if (!track.firstElementChild) return;
 
 				const container = track.parentElement;
 				const unit = track.firstElementChild;
@@ -913,7 +993,7 @@
 					document.fonts.ready.then(measure);
 				}
 				requestAnimationFrame(step);
-			})();
+			});
 		</script>
 
 		<!-- EP teaser: play only while on screen, click to unmute -->
