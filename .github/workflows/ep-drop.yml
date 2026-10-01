@@ -1,0 +1,90 @@
+# Drops the "Held Under an Incandescent Sky" post on release night.
+#
+# The post waits on the ep-release branch. Each run below pulls the real
+# album links off the label's smart link, puts them in the post, and
+# fast-forwards main to it, then kicks off the Pages deploy (pushes made
+# with GITHUB_TOKEN don't trigger it on their own). The later runs only
+# fill in links the label hadn't published yet, and the job switches
+# itself off once every chip has a real link.
+name: Drop the EP post
+
+on:
+  schedule:
+    - cron: "5 5 2 10 *" # 12:05 AM Central, Oct 2
+    - cron: "35 5 2 10 *" # 12:35 AM, in case GitHub delayed/skipped the first
+    - cron: "5 7 2 10 *" # 2:05 AM, links that showed up late
+    - cron: "5 14 2 10 *" # 9:05 AM, last sweep
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: push to ep-drop-test instead of main, no deploy"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: ep-drop
+  cancel-in-progress: false
+
+jobs:
+  drop:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Drop the post and fill in the links
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +%Y)" != "2026" ]; then
+            echo "Only meant for 2026"; exit 0
+          fi
+
+          git config user.name "Abraham Steve Colina"
+          git config user.email "130194837+steveweenie@users.noreply.github.com"
+          cp .github/scripts/ep_drop.py /tmp/ep_drop.py
+
+          if grep -q 'id="epReleasePost"' index.html; then
+            echo "Post is already on main, just checking the links"
+            from_branch=false
+          else
+            echo "Post not live yet, taking it from ep-release"
+            git checkout -B work origin/ep-release
+            from_branch=true
+          fi
+
+          python3 /tmp/ep_drop.py | tee /tmp/out.txt
+          if grep -qx changed /tmp/out.txt; then
+            git commit -am "Point the EP listen links at the real album pages"
+          fi
+
+          if [ "$DRY_RUN" = "true" ]; then
+            git push -f origin HEAD:refs/heads/ep-drop-test
+            echo "Dry run: pushed to ep-drop-test, main untouched"
+            exit 0
+          fi
+
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            git push origin HEAD:main
+            if [ "$from_branch" = true ]; then
+              git push -f origin HEAD:ep-release
+            fi
+            gh workflow run static.yml --ref main
+            echo "Pushed to main and started the deploy"
+          else
+            echo "Nothing new to push"
+          fi
+
+          # every chip has a real link now: no need to run again
+          if ! sed -n '/class="listen-icons"/,/<\/div>/p' index.html | grep -q 'vyd.co/'; then
+            gh workflow disable ep-drop.yml
+            echo "All links filled in, workflow disabled"
+          fi
