@@ -188,7 +188,14 @@
 
 		<div class="container">
 			<!-- ===== EP OUT NOW: HELD UNDER AN INCANDESCENT SKY ===== -->
-			<div class="box promo-box release-post" id="epReleasePost">
+			<!-- Hidden until midnight 10/02 in the visitor's own time zone,
+			     same as the EP countdown below. -->
+			<div
+				class="box promo-box release-post"
+				id="epReleasePost"
+				data-release="2026-10-02T00:00:00"
+				hidden
+			>
 				<h3 class="subheaders promo-subheader">
 					OUT NOW... HELD UNDER AN INCANDESCENT SKY 10/02/26
 				</h3>
@@ -1127,6 +1134,29 @@
 						timer = setInterval(tick, 1000);
 					}
 				});
+			})();
+		</script>
+
+		<!-- EP "out now" post: stays hidden until its data-release, then
+		     shows itself, even if the page was already open at midnight. -->
+		<script>
+			(function () {
+				const post = document.getElementById("epReleasePost");
+				if (!post) return;
+				const release = new Date(post.dataset.release).getTime();
+
+				function reveal() {
+					post.hidden = false;
+					// the ticker measured itself while hidden, so let it re-measure
+					window.dispatchEvent(new Event("resize"));
+				}
+
+				const left = release - Date.now();
+				if (left <= 0) {
+					reveal();
+				} else if (left < 2147483647) {
+					setTimeout(reveal, left);
+				}
 			})();
 		</script>
 
