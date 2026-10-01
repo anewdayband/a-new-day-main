@@ -1304,6 +1304,8 @@ a:active {
 
 	.teaser-content {
 		padding: 1rem;
+		/* stacked on mobile: keep the video/chips gap equal to the padding */
+		gap: 1rem;
 	}
 
 	.teaser-screen {
