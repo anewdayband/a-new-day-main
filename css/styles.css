@@ -1351,39 +1351,134 @@ a:active {
 	}
 }
 
-/* --- "listen on" icon row in release posts ------------------------ */
+/* --- "out now" release post ------------------------------------- *
+ * Same stage as the countdown boxes, but with a full text column
+ * next to the cover and a track list / credits row underneath. */
+.release-grid {
+	align-items: flex-start;
+}
+
+.release-post .promo-art {
+	/* never wider than the stage on narrow phones */
+	max-width: 100%;
+}
+
+.release-copy {
+	flex: 1 1 320px;
+	min-width: 0;
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.release-post a:not(.promo-art):not(.listen-icons a) {
+	color: #ffb9e6;
+}
+
+.release-post a:not(.promo-art):not(.listen-icons a):hover {
+	color: var(--tbd-mag-hot);
+	font-weight: normal;
+	text-shadow: 0 0 8px rgba(255, 63, 191, 0.7);
+}
+
+.release-details {
+	position: relative;
+	z-index: 4;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem 2.5rem;
+	margin-top: 1.75rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid rgba(215, 65, 174, 0.5);
+	color: #fff;
+	font-size: 15px;
+	line-height: 1.7;
+}
+
+.release-details > div {
+	flex: 1 1 260px;
+	min-width: 0;
+}
+
+.release-details h4 {
+	font-family: "Anton", "PT Sans Narrow", Impact, sans-serif;
+	font-weight: 400;
+	font-size: 22px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #fff;
+	text-shadow: 0 0 10px var(--tbd-mag-hot);
+	margin-bottom: 0.5rem;
+}
+
+.release-details ol {
+	padding-left: 1.25rem;
+	margin: 0;
+}
+
+.release-details li::marker {
+	color: var(--tbd-mag-hot);
+}
+
+.release-credits {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+/* --- "listen on" icon row ---------------------------------------- */
 .listen-icons {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
-	margin: 0 0 1rem;
+	margin: 1.25rem 0 0;
 }
 
 .listen-icons a {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4rem;
-	padding: 0.3rem 0.7rem;
-	color: #212121;
-	background: #fff;
-	border: 1px solid #c4b7d5;
-	font-size: 14px;
-	transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+	padding: 0.35rem 0.75rem;
+	font-family: "PT Sans Narrow", sans-serif;
+	font-size: 15px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.55);
+	border: 1px solid var(--tbd-mag);
+	box-shadow: inset 0 0 12px rgba(215, 65, 174, 0.35);
+	transition: transform 0.15s ease, box-shadow 0.15s ease,
+		background-color 0.15s ease;
 }
 
 .listen-icons a:visited {
-	color: #212121;
+	color: #fff;
 }
 
 .listen-icons a i {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
+	color: #ffb9e6;
 }
 
 .listen-icons a:hover,
 .listen-icons a:focus-visible {
 	font-weight: normal;
-	color: #4a2a8b;
-	border-color: #7aa7ff;
-	transform: scale(1.06);
-	text-shadow: 0 0 8px rgba(122, 167, 255, 0.8);
+	color: #fff;
+	background: var(--tbd-mag-hot);
+	transform: translate(-2px, -2px);
+	box-shadow: 3px 3px 0 var(--tbd-ink);
+}
+
+.listen-icons a:hover i,
+.listen-icons a:focus-visible i {
+	color: #fff;
+}
+
+@media (max-width: 750px) {
+	.release-copy,
+	.release-details {
+		font-size: 14px;
+	}
+
+	.listen-icons a {
+		font-size: 14px;
+	}
 }
