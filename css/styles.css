@@ -412,7 +412,9 @@
 	position: fixed;
 	display: none;
 	left: 50%;
-	bottom: 0; /* sits flush on the screen edge, even when the bar is extended */
+	/* just shy of the edge: a sliver of bar stays below so Safari still
+	 * sees one colour along the bottom and keeps tinting its toolbar */
+	bottom: 6px;
 	margin-left: -22px;
 	border-radius: 0;
 	z-index: 99;
