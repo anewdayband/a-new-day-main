@@ -412,7 +412,7 @@
 	position: fixed;
 	display: none;
 	left: 50%;
-	bottom: env(safe-area-inset-bottom, 0px);
+	bottom: 0; /* sits flush on the screen edge, even when the bar is extended */
 	margin-left: -22px;
 	border-radius: 0;
 	z-index: 99;
