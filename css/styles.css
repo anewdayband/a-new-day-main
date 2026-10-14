@@ -714,6 +714,104 @@ a:active {
 	text-shadow: 0 0 8px rgba(122, 167, 255, 0.8);
 }
 
+/* --- label credits (Daze + Self Inflicted Records) ----------------
+ * Desktop: pinned to the bottom of the sidebar.
+ * Mobile: pulled out into the fixed bottom bar (see media query). */
+.label-logos {
+	margin-top: auto;
+	padding: 1.25rem 0.75rem 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.label-caption {
+	color: rgba(255, 255, 255, 0.55);
+	font-size: 12px;
+	letter-spacing: 0.14em;
+}
+
+.side1 .label-logo {
+	display: block;
+	line-height: 0;
+	transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.side1 .label-logo img {
+	display: block;
+	height: auto;
+}
+
+.side1 .label-logo-daze img {
+	width: 70px;
+}
+
+.side1 .label-logo-sir img {
+	width: 104px;
+}
+
+.side1 .label-logo-daze {
+	margin-bottom: 0.5rem;
+}
+
+.side1 .label-logo:hover,
+.side1 .label-logo:focus-visible {
+	transform: scale(1.06);
+	filter: drop-shadow(0 0 6px rgba(122, 167, 255, 0.8));
+}
+
+/* Bar mode: on phones, and on desktops too short to fit the logos under
+ * the nav, they ride on the fixed .footerwrapper bar at full opacity. */
+@media (max-width: 750px), (max-height: 1009px) {
+	.label-logos {
+		position: fixed;
+		left: 200px; /* clear the sidebar + its shadow strip */
+		bottom: 0;
+		height: 40px;
+		margin: 0;
+		padding: 0 0.75rem;
+		flex-direction: row;
+		gap: 0.9rem;
+		border-top: none;
+	}
+
+	.label-caption {
+		display: none;
+	}
+
+	.side1 .label-logo-daze {
+		margin-bottom: 0;
+	}
+
+	.side1 .label-logo-daze img {
+		width: auto;
+		height: 32px;
+	}
+
+	.side1 .label-logo-sir img {
+		width: auto;
+		height: 22px;
+	}
+}
+
+@media (max-width: 750px) {
+	.label-logos {
+		left: 0;
+	}
+
+	/* wrap the site credit onto two lines so it clears the logos */
+	#credit {
+		max-width: 200px; /* breaks right after the "|" */
+		margin: 0;
+		padding: 0 0.5rem 6px 0;
+		font-size: 11px;
+		line-height: 14px;
+		text-align: right;
+	}
+}
+
 @media (max-width: 750px) {
 	body {
 		background: linear-gradient(
