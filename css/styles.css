@@ -418,23 +418,6 @@
 	z-index: 99;
 }
 
-/* See-through so the arrow reads as part of the bar: Safari only tints
- * its toolbar when everything touching the bottom edge is one colour,
- * so a purple square there kills the tint. Purple comes back on press. */
-.btn.back-to-top {
-	height: 40px;
-	background-color: transparent;
-	border-color: transparent;
-	box-shadow: none;
-}
-
-.btn.back-to-top:hover,
-.btn.back-to-top:focus-visible,
-.btn.back-to-top:active {
-	background-color: #6f42c1;
-	border-color: #6f42c1;
-}
-
 /* Reset and Base */
 * {
 	box-sizing: border-box;
