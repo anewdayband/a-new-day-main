@@ -412,7 +412,7 @@
 	position: fixed;
 	display: none;
 	left: 50%;
-	bottom: 0;
+	bottom: env(safe-area-inset-bottom, 0px);
 	margin-left: -22px;
 	border-radius: 0;
 	z-index: 99;
@@ -575,7 +575,8 @@ body {
 	width: 100%;
 	background-color: #212121;
 	opacity: 0.7;
-	height: 40px;
+	/* reaches down behind Safari's toolbar / home indicator (viewport-fit=cover) */
+	height: calc(40px + env(safe-area-inset-bottom, 0px));
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -686,7 +687,7 @@ a:active {
 	color: #fff;
 	font-size: 12px;
 	position: fixed;
-	bottom: 0;
+	bottom: env(safe-area-inset-bottom, 0px);
 	right: 0;
 	z-index: 3;
 }
@@ -768,7 +769,7 @@ a:active {
 	.label-logos {
 		position: fixed;
 		left: 200px; /* clear the sidebar + its shadow strip */
-		bottom: 0;
+		bottom: env(safe-area-inset-bottom, 0px);
 		height: 40px;
 		margin: 0;
 		padding: 0 0.75rem;
