@@ -414,7 +414,7 @@
 	left: 50%;
 	/* just shy of the edge: a sliver of bar stays below so Safari still
 	 * sees one colour along the bottom and keeps tinting its toolbar */
-	bottom: 6px;
+	bottom: 3px;
 	margin-left: -22px;
 	border-radius: 0;
 	z-index: 99;
